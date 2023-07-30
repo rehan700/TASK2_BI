@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: 'Helvetica', sans-serif;
+            text-align: center;
+            background: linear-gradient(180deg, #2c3e50, #3498db);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        h1 {
+            margin: 30px 0;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        .container {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color: #f1f1f1;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #16a085;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        button:hover {
+            background-color: #1abc9c;
+        }
+
+        .result {
+            font-size: 1.6rem;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .error {
+            color: #e74c3c;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="color: black;">Temperature Converter</h1>
+        <label for="celsius" style="color: black;">Celsius:</label>
+        <input type="number" id="celsius" placeholder="Enter temperature in Celsius">
+
+        <label for="fahrenheit" style="color: black;">Fahrenheit:</label>
+        <input type="number" id="fahrenheit" placeholder="Enter temperature in Fahrenheit">
+
+        <div style="display: flexbox;"><button onclick="convertToCelsius()">Convert to Celsius</button>
+            <button onclick="convertToFahrenheit()">Convert to Fahrenheit</button></div>
+
+        <div class="result" id="result" style="color: black;"></div>
+        <div class="error" id="error" style="color: black;"></div>
+    </div>
+
+    <script>
+        function convertToCelsius() {
+            const fahrenheitInput = document.getElementById("fahrenheit");
+            const resultElement = document.getElementById("result");
+            const errorElement = document.getElementById("error");
+
+            if (isNaN(fahrenheitInput.value)) {
+                resultElement.textContent = "";
+                errorElement.textContent = "Please enter a valid number";
+            } else {
+                errorElement.textContent = "";
+                const fahrenheit = parseFloat(fahrenheitInput.value);
+                const celsius = (fahrenheit - 32) * (5 / 9);
+                resultElement.textContent = `Celsius: ${celsius.toFixed(5)}`;
+            }
+        }
+
+        function convertToFahrenheit() {
+            const celsiusInput = document.getElementById("celsius");
+            const resultElement = document.getElementById("result");
+            const errorElement = document.getElementById("error");
+
+            if (isNaN(celsiusInput.value)) {
+                resultElement.textContent = "";
+                errorElement.textContent = "Please enter a valid number";
+            } else {
+                errorElement.textContent = "";
+                const celsius = parseFloat(celsiusInput.value);
+                const fahrenheit = (celsius * 9 / 5) + 32;
+                resultElement.textContent = `Fahrenheit: ${fahrenheit.toFixed(5)}`;
+            }
+        }
+    </script>
+</body>
+</html>
